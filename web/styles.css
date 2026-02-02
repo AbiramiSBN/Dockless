@@ -1,0 +1,91 @@
+:root{
+  --bg0:#070A12;
+  --bg1:#0B1020;
+  --card: rgba(255,255,255,.06);
+  --card2: rgba(255,255,255,.09);
+  --txt: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.68);
+  --brand1:#5B8CFF;
+  --brand2:#B06CFF;
+  --ok:#27d17f;
+}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(91,140,255,.35), transparent 60%),
+              radial-gradient(1000px 600px at 90% 0%, rgba(176,108,255,.28), transparent 55%),
+              linear-gradient(180deg, var(--bg0), var(--bg1));
+  color: var(--txt);
+  min-height: 100vh;
+}
+.navbar{
+  background: rgba(0,0,0,.15)!important;
+  backdrop-filter: blur(10px);
+}
+.hero{
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+.badge-soft{
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: .35rem .65rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.9rem;
+}
+.grad{
+  background: linear-gradient(135deg, var(--brand1), var(--brand2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
+}
+.cardx{
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+.cardx:hover{ border-color: rgba(255,255,255,.22); background: var(--card2); }
+.btn-grad{
+  background: linear-gradient(135deg, var(--brand1), var(--brand2));
+  border: none;
+  color: white;
+  box-shadow: 0 10px 25px rgba(91,140,255,.25);
+}
+.btn-grad:hover{ filter: brightness(1.05); }
+.kbd{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.14);
+  padding: .15rem .4rem;
+  border-radius: .5rem;
+  color: rgba(255,255,255,.86);
+}
+pre{
+  margin:0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.codebox{
+  background: rgba(0,0,0,.30);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  padding: 1rem;
+}
+.footer{
+  color: rgba(255,255,255,.62);
+  border-top: 1px solid rgba(255,255,255,.10);
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+.pill{
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  padding: .45rem .75rem;
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.78);
+  font-size:.92rem;
+}

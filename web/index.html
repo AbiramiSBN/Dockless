@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wired & Wireless Display — scrcpy helper for Linux</title>
+  <meta name="description" content="Mirror and control Android devices over USB or Wi‑Fi using scrcpy. Includes an enhanced Bash script + a simple website." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#">
+        <span class="grad">Wired & Wireless Display</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#install">Install</a></li>
+          <li class="nav-item"><a class="nav-link" href="#usage">Usage</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container pt-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="badge-soft mb-3">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--ok);display:inline-block"></span>
+            Raspberry Pi / Linux + ADB + scrcpy
+            <span class="pill ms-2">USB</span>
+            <span class="pill">Wi‑Fi</span>
+          </div>
+          <h1 class="display-5 fw-bold lh-sm">
+            Mirror Android handhelds on Linux — <span class="grad">wired or wireless</span>.
+          </h1>
+          <p class="lead text-white-50 mt-3">
+            A small Bash script built for <b>Android handhelds without display output</b> and lightweight Linux devices (like <b>Raspberry Pi</b>). It finds your devices, optionally sets up ADB-over-Wi‑Fi, and launches scrcpy with
+            controller-friendly defaults.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-grad btn-lg px-4" href="#install">Get started</a>
+            <a class="btn btn-outline-light btn-lg px-4" href="#usage">See commands</a>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <span class="badge-soft">No Electron. No daemons. Just scripts.</span>
+            <span class="badge-soft">Works on Raspberry Pi OS and any distro with <span class="kbd">adb</span> + <span class="kbd">scrcpy</span>.</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="cardx p-4">
+            <h5 class="fw-semibold mb-2">Quick copy</h5>
+            <p class="text-white-50 mb-3">Install dependencies and run the enhanced script:</p>
+
+            <div class="codebox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-white-50 small">Ubuntu / Debian</span>
+                <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd1')">Copy</button>
+              </div>
+              <pre id="cmd1">sudo apt update
+sudo apt install -y scrcpy android-tools-adb
+chmod +x ./wwd.sh
+./wwd.sh</pre>
+            </div>
+
+            <div class="mt-3 text-white-50 small">
+              Tip: serve this page locally with <span class="kbd">python3 -m http.server</span>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="features" class="mt-5">
+      <div class="row g-3">
+        <div class="col-12">
+          <h2 class="fw-bold">Features</h2>
+          <p class="text-white-50">A simple “connect + display” flow for Android handhelds where HDMI/DP output isn’t an option.</p>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold mb-2">Device picker</h5>
+            <p class="text-white-50 mb-0">Lists all ADB devices and lets you choose USB, Wi‑Fi, or both.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold mb-2">Wireless setup mode</h5>
+            <p class="text-white-50 mb-0">Switches a USB-connected device to TCP/IP <span class="kbd">5555</span>, then connects by IP.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold mb-2">Controller-friendly scrcpy</h5>
+            <p class="text-white-50 mb-0">Uses <span class="kbd">--gamepad=uhid</span> and sensible quality defaults.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="mt-5">
+      <h2 class="fw-bold">Install</h2>
+      <p class="text-white-50">You just need scrcpy and ADB.</p>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="cardx p-4">
+            <h5 class="fw-semibold mb-2">Ubuntu / Debian</h5>
+            <div class="codebox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-white-50 small">Run</span>
+                <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd2')">Copy</button>
+              </div>
+              <pre id="cmd2">sudo apt update
+sudo apt install -y scrcpy android-tools-adb</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="cardx p-4">
+            <h5 class="fw-semibold mb-2">Fedora</h5>
+            <div class="codebox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-white-50 small">Run</span>
+                <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd3')">Copy</button>
+              </div>
+              <pre id="cmd3">sudo dnf install -y scrcpy android-tools</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardx p-4 mt-3">
+        <h5 class="fw-semibold mb-2">Android (one-time)</h5>
+        <ol class="text-white-50 mb-0">
+          <li>Enable <b>Developer options</b></li>
+          <li>Enable <b>USB debugging</b></li>
+          <li>Plug in and accept the <b>Allow USB debugging</b> prompt</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="usage" class="mt-5">
+      <h2 class="fw-bold">Usage</h2>
+      <p class="text-white-50">Two scripts: the original and an enhanced one.</p>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold">Enhanced script</h5>
+            <p class="text-white-50">Includes wireless setup + better prompts.</p>
+            <div class="codebox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-white-50 small">Run</span>
+                <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd4')">Copy</button>
+              </div>
+              <pre id="cmd4">chmod +x ./wwd.sh
+./wwd.sh</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold">Original script</h5>
+            <p class="text-white-50">Your device picker + fullscreen/windowed toggle.</p>
+            <div class="codebox">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-white-50 small">Run</span>
+                <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd5')">Copy</button>
+              </div>
+              <pre id="cmd5">chmod +x ./Connect.sh
+./Connect.sh</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardx p-4 mt-3">
+        <h5 class="fw-semibold mb-2">Manual wireless connect</h5>
+        <p class="text-white-50 mb-2">If you already switched ADB to TCP/IP once:</p>
+        <div class="codebox">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-white-50 small">Run</span>
+            <button class="btn btn-sm btn-outline-light" onclick="copyText('cmd6')">Copy</button>
+          </div>
+          <pre id="cmd6">adb connect &lt;phone-ip&gt;:5555
+adb devices</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-5">
+      <h2 class="fw-bold">FAQ</h2>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold mb-2">My device doesn’t show up</h5>
+            <p class="text-white-50 mb-0">
+              Make sure USB debugging is enabled, the cable supports data, and you accepted the “Allow USB debugging” prompt.
+              Then run <span class="kbd">adb devices</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="cardx p-4 h-100">
+            <h5 class="fw-semibold mb-2">Wireless mode keeps disconnecting</h5>
+            <p class="text-white-50 mb-0">
+              Wi‑Fi power saving can kill ADB. Keep the phone awake, stay on the same network, and reconnect with
+              <span class="kbd">adb connect</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>Built for Linux + scrcpy. MIT licensed.</div>
+          <div class="text-white-50">Open <span class="kbd">website/index.html</span> locally to view this page.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
